@@ -1,11 +1,19 @@
 # use-toc
 
-[Demo](https://hub.nino.plus/c/toc)
+`use-toc` is a React custom hook that automatically generates a table of contents from HTML headings. Since it is headless, you can style it freely, and because it is not a package, it is fully customizable.
 
+- Detects active heading based on scroll position
+- Automatically assigns IDs if headings do not have them
+- Supports hierarchical structure of headings
+- Supports tags other than headings
+- Works with elements that have `overflow: scroll`
+
+[Demo](https://hub.nino.plus/c/toc)
 
 ## Usage
 
-Copy the [use-toc.ts](https://github.com/dninomiya/use-toc/blob/main/use-toc.ts) file into your project.
+1. Copy the [use-toc.ts](https://github.com/dninomiya/use-toc/blob/main/use-toc.ts) file into your project.
+2. Here is how to use it:
 
 ```tsx
 'use client';
