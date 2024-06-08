@@ -62,3 +62,6 @@ export default function Toc() {
 | `containerId`    | string | The ID of the container element. (for `overflow: scroll`)     |                  | No       |
 | `targetSelectors`| string | CSS selectors for target elements.   | 'h1, h2, h3, h4, h5, h6' | No |
 
+## Contribute
+
+If you have any bugs, improvements, or ideas, feel free to open an issue or submit a pull request!
