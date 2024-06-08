@@ -5,6 +5,8 @@
 
 ## Usage
 
+Copy the [use-toc.ts](https://github.com/dninomiya/use-toc/blob/main/use-toc.ts) file into your project.
+
 ```tsx
 'use client';
 
