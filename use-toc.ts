@@ -124,7 +124,7 @@ export const useToc = ({
     return () => {
       allElements.forEach((element) => observer.unobserve(element));
     };
-  }, [contentId, containerId, targetSelectors]);
+  }, [contentId, containerId, targetSelectors, ignoreIds]);
 
   useEffect(() => {
     if (window.location.hash) {
