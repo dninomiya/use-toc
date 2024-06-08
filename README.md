@@ -56,11 +56,12 @@ export default function Toc() {
 
 ## Props
 
-| Prop Name        | Type   | Description                          | Default Value    | Required |
-|------------------|--------|--------------------------------------|------------------|----------|
-| `contentId`      | string | The ID of the content element.       |                  | Yes      |
-| `containerId`    | string | The ID of the container element. (for `overflow: scroll`)     |                  | No       |
-| `targetSelectors`| string | CSS selectors for target elements.   | 'h1, h2, h3, h4, h5, h6' | No |
+| Prop Name         | Type     | Description                                               | Default Value            | Required |
+| ----------------- | -------- | --------------------------------------------------------- | ------------------------ | -------- |
+| `contentId`       | string   | The ID of the content element.                            |                          | Yes      |
+| `containerId`     | string   | The ID of the container element. (for `overflow: scroll`) |                          | No       |
+| `targetSelectors` | string   | CSS selectors for target elements.                        | 'h1, h2, h3, h4, h5, h6' | No       |
+| `ignoreIds`       | string[] | The IDs to use to ignore the headings.                    |                          | No       |
 
 ## Contribute
 
