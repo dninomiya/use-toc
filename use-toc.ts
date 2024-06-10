@@ -84,7 +84,7 @@ export const useToc = ({
       headingElements.map((heading) => ({
         id: heading.id || heading.textContent!,
         text: heading.textContent!,
-        level: Number(heading.tagName.replace('h', '')),
+        level: Number(heading.tagName.replace('H', '')),
       }))
     );
 
