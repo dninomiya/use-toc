@@ -13,6 +13,7 @@ type Heading = {
  * @param contentId The ID of the container element containing the headings
  * @param containerId The ID of the container element to observe for scroll events
  * @param targetSelectors The selectors to use to find the headings
+ * @param ignoreIds The IDs to use to ignore the headings
  * @returns The headings and the ID of the active heading
  *
  * @example
@@ -26,10 +27,12 @@ export const useToc = ({
   contentId,
   containerId,
   targetSelectors = 'h1, h2, h3, h4, h5, h6',
+  ignoreIds,
 }: {
   contentId: string;
   containerId?: string;
   targetSelectors?: string;
+  ignoreIds?: string[];
 }) => {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState('');
@@ -44,11 +47,11 @@ export const useToc = ({
 
     if (!content) return;
 
-    const headingElements = Array.from(
+    let headingElements = Array.from(
       content.querySelectorAll(targetSelectors)
     ).filter((heading) => Boolean(heading.textContent));
 
-    const allElements: Element[] = [];
+    let allElements: Element[] = [];
 
     headingElements.forEach((heading, index) => {
       allElements.push(heading);
@@ -67,6 +70,15 @@ export const useToc = ({
         heading.id = encodeURIComponent(heading.textContent);
       }
     });
+
+    if (ignoreIds) {
+      headingElements = headingElements.filter(
+        (heading) => !ignoreIds.includes(heading.id)
+      );
+      allElements = allElements.filter(
+        (heading) => !ignoreIds.includes(heading.id)
+      );
+    }
 
     setHeadings(
       headingElements.map((heading) => ({
@@ -112,7 +124,7 @@ export const useToc = ({
     return () => {
       allElements.forEach((element) => observer.unobserve(element));
     };
-  }, [contentId, containerId, targetSelectors]);
+  }, [contentId, containerId, targetSelectors, ignoreIds]);
 
   useEffect(() => {
     if (window.location.hash) {
