@@ -28,7 +28,7 @@ export default function Toc() {
   });
 
   return (
-    <div id="content-view" className='overflow-scroll'>
+    <div id="content-view" className="overflow-scroll">
       <div id="content">
         <h1>...</h1>
         <h2>....</h2>
@@ -56,12 +56,15 @@ export default function Toc() {
 
 ## Props
 
-| Prop Name         | Type     | Description                                               | Default Value            | Required |
-| ----------------- | -------- | --------------------------------------------------------- | ------------------------ | -------- |
-| `contentId`       | string   | The ID of the content element.                            |                          | Yes      |
-| `containerId`     | string   | The ID of the container element. (for `overflow: scroll`) |                          | No       |
-| `targetSelectors` | string   | CSS selectors for target elements.                        | 'h1, h2, h3, h4, h5, h6' | No       |
-| `ignoreIds`       | string[] | The IDs to use to ignore the headings.                    |                          | No       |
+| Prop Name         | Type     | Description                                                                       | Default Value            | Required |
+| ----------------- | -------- | --------------------------------------------------------------------------------- | ------------------------ | -------- |
+| `contentId`       | string   | The ID of the content element.                                                    |                          | Yes      |
+| `containerId`     | string   | The ID of the container element. (for `overflow: scroll`)                         |                          | No       |
+| `targetSelectors` | string   | CSS selectors for target elements.                                                | 'h1, h2, h3, h4, h5, h6' | No       |
+| `ignoreIds`       | string[] | The IDs to use to ignore the headings.                                            |                          | No       |
+| `tocContainer`    | string[] | The query selector to find the container element to render the table of contents. |                          | No       |
+
+When the `tocContainer` is set, the TOC will automatically scroll according to the active section.
 
 ## Contribute
 

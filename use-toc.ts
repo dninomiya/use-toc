@@ -14,6 +14,7 @@ type Heading = {
  * @param containerId The ID of the container element to observe for scroll events
  * @param targetSelectors The selectors to use to find the headings
  * @param ignoreIds The IDs to use to ignore the headings
+ * @param tocContainer The query selector to find the container element to render the table of contents
  * @returns The headings and the ID of the active heading
  *
  * @example
@@ -28,11 +29,13 @@ export const useToc = ({
   containerId,
   targetSelectors = 'h1, h2, h3, h4, h5, h6',
   ignoreIds,
+  tocContainer,
 }: {
   contentId: string;
   containerId?: string;
   targetSelectors?: string;
   ignoreIds?: string[];
+  tocContainer?: string;
 }) => {
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [activeId, setActiveId] = useState('');
@@ -136,6 +139,28 @@ export const useToc = ({
       }
     }
   }, []);
+
+  useEffect(() => {
+    if (tocContainer && activeId) {
+      const tocContainerElements = document.querySelectorAll(tocContainer);
+
+      if (!tocContainerElements.length) return;
+
+      tocContainerElements.forEach((tocContainerElement) => {
+        const linkElement = tocContainerElement?.querySelector(
+          `a[href="#${activeId}"]`
+        );
+
+        if (linkElement && tocContainerElement) {
+          const targetRect = linkElement.getBoundingClientRect();
+          const parentRect = tocContainerElement.getBoundingClientRect();
+          const relativeTop =
+            targetRect.top - parentRect.top + tocContainerElement.scrollTop;
+          tocContainerElement.scrollTop = relativeTop;
+        }
+      });
+    }
+  }, [tocContainer, activeId]);
 
   return { headings, activeId };
 };
